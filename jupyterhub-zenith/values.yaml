@@ -1,7 +1,4 @@
 jupyterhub:
-  image:
-    name: ghcr.io/stackhpc/jupyterhub-k8s-image-awaiter
-    tag: 1.2.0
   prePuller:
     hook:
       enabled: false
@@ -11,16 +8,10 @@ jupyterhub:
     service:
       type: ClusterIP
     chp:
-      image:
-        name: ghcr.io/stackhpc/jupyterhub-configurable-http-proxy
-        tag: 4.5.0
       networkPolicy:
         enabled: false
 
   hub:
-    image:
-      name: ghcr.io/stackhpc/jupyterhub-k8s-hub
-      tag: 1.2.0
     networkPolicy:
       enabled: false
   # Configure the authentication to respect the X-Remote-User header sent by Zenith from Azimuth
@@ -61,11 +52,11 @@ jupyterhub:
         description: "Minimal Python environment"
         default: true
         kubespawner_override:
-          image: ghcr.io/stackhpc/jupyter-minimal-notebook:2022-02-12
+          image: jupyter/minimal-notebook:2022-02-12
       - display_name: "Spark environment"
         description: "Python, R, and Scala support for Apache Spark."
         kubespawner_override:
-          image: ghcr.io/stackhpc/jupyter-all-spark-notebook:2022-02-12
+          image: jupyter/all-spark-notebook:2022-02-12
     memory:
       limit: "1G"
       guarantee: "1G"
