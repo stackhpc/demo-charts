@@ -5,8 +5,6 @@ jobs:
   build_push_chart:
     name: Build and push Helm charts
     runs-on: ubuntu-latest
-    # Only build and push the chart if the images built successfully
-    needs: [build_push_images]
     steps:
       - name: Check out the repository
         uses: actions/checkout@v2
