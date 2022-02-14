@@ -2,9 +2,52 @@ name: Publish artifacts
 # Run the tasks on every push
 on: push
 jobs:
+  sync_images:
+    name: Build and push images
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - src: jupyterhub/k8s-image-awaiter
+            dest: ghcr.io/stackhpc/jupyterhub-k8s-image-awaiter
+            tag: 1.2.0
+          - src: jupyterhub/configurable-http-proxy
+            dest: ghcr.io/stackhpc/jupyterhub-configurable-http-proxy
+            tag: 4.5.0
+          - src: jupyterhub/k8s-hub
+            dest: ghcr.io/stackhpc/jupyterhub-k8s-hub
+            tag: 1.2.0
+          - src: jupyter/minimal-notebook
+            dest: ghcr.io/stackhpc/jupyter-minimal-notebook
+            tag: "2022-02-12"
+          - src: jupyter/all-spark-notebook
+            dest: ghcr.io/stackhpc/jupyter-all-spark-notebook
+            tag: "2022-02-12"
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync image
+        env:
+          IMAGE_SYNC_SRC: ${{ matrix.src }}
+          IMAGE_SYNC_DEST: ${{ matrix.dest }}
+          IMAGE_SYNC_TAG: ${{ matrix.tag }}
+        run: |
+          docker pull ${IMAGE_SYNC_SRC}:${IMAGE_SYNC_TAG}
+          docker tag ${IMAGE_SYNC_SRC}:${IMAGE_SYNC_TAG} ${IMAGE_SYNC_DEST}:${IMAGE_SYNC_TAG}
+          docker push ${IMAGE_SYNC_DEST}:${IMAGE_SYNC_TAG}
+
   build_push_chart:
     name: Build and push Helm charts
     runs-on: ubuntu-latest
+    needs: [sync_images]
     steps:
       - name: Check out the repository
         uses: actions/checkout@v2
