@@ -3,6 +3,7 @@ name: jupyterhub-zenith
 description: A Helm chart for a Zenith-integrated JupyterHub
 type: application
 version: 0.1.0
+icon: https://zero-to-jupyterhub.readthedocs.io/en/latest/_static/hublogo.svg
 
 dependencies:
   - name: jupyterhub
