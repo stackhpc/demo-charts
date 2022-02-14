@@ -1,11 +1,20 @@
 jupyterhub:
+  prePuller:
+    hook:
+      enabled: false
+
   # For the proxy, we only need a ClusterIP service as Zenith will punch it out
   proxy:
     service:
       type: ClusterIP
+    chp:
+      networkPolicy:
+        enabled: false
 
-  # Configure the authentication to respect the X-Remote-User header sent by Zenith from Azimuth
   hub:
+    networkPolicy:
+      enabled: false
+  # Configure the authentication to respect the X-Remote-User header sent by Zenith from Azimuth
     extraConfig:
       remoteuser.py: |
         from jupyterhub.auth import Authenticator
@@ -33,6 +42,8 @@ jupyterhub:
         c.JupyterHub.authenticator_class = RemoteUserAuthenticator
 
   singleuser:
+    networkPolicy:
+      enabled: false
     defaultUrl: /lab
     extraEnv:
       JUPYTERHUB_SINGLEUSER_APP: "jupyter_server.serverapp.ServerApp"
