@@ -1,0 +1,18 @@
+apiVersion: v1
+entries:
+  jupyterhub-zenith:
+  - apiVersion: v2
+    appVersion: 66a267c
+    created: "2022-02-14T14:55:44.310967525Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 1.2.0
+    description: A Helm chart for a Zenith-integrated JupyterHub
+    digest: 4515edc919498d22ea52fe3a1be63bf013ec0d079e9d8e22ec3c0e25ec94a1d5
+    name: jupyterhub-zenith
+    type: application
+    urls:
+    - jupyterhub-zenith-0.1.0-dev.0.master.2.tgz
+    version: 0.1.0-dev.0.master.2
+generated: "2022-02-14T14:55:44.30427298Z"
