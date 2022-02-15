@@ -67,6 +67,7 @@ jupyterhub:
       capacity: "10Gi"
     storage:
       capacity: "10Gi"
+      extraVolumes:
         - name: dac-nvme
           persistentVolumeClaim:
             claimName: rook-nfs-pv-claim
