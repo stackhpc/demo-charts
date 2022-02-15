@@ -2,8 +2,26 @@ apiVersion: v1
 entries:
   jupyterhub-zenith:
   - apiVersion: v2
+    appVersion: 4fac078
+    created: "2022-02-15T13:06:53.923659057Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 1.2.0
+    description: JupyterHub with Zenith integration
+    digest: 56b6495790fcad39ae8938f4f7ed204c6864da7b19af5fd048af049414b77fba
+    icon: https://zero-to-jupyterhub.readthedocs.io/en/latest/_static/hublogo.svg
+    keywords:
+    - jupyter
+    - jupyterhub
+    name: jupyterhub-zenith
+    type: application
+    urls:
+    - jupyterhub-zenith-0.1.0-dev.0.master.12.tgz
+    version: 0.1.0-dev.0.master.12
+  - apiVersion: v2
     appVersion: 8537c2b
-    created: "2022-02-15T12:55:42.830726394Z"
+    created: "2022-02-15T13:06:53.918642486Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -21,7 +39,7 @@ entries:
     version: 0.1.0-dev.0.master.11
   - apiVersion: v2
     appVersion: e168360
-    created: "2022-02-15T12:55:42.863924946Z"
+    created: "2022-02-15T13:06:53.958207058Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -39,7 +57,7 @@ entries:
     version: 0.1.0-dev.0.master.8
   - apiVersion: v2
     appVersion: 7a2864b
-    created: "2022-02-15T12:55:42.859362011Z"
+    created: "2022-02-15T13:06:53.95257149Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -57,7 +75,7 @@ entries:
     version: 0.1.0-dev.0.master.7
   - apiVersion: v2
     appVersion: d0dad63
-    created: "2022-02-15T12:55:42.854783577Z"
+    created: "2022-02-15T13:06:53.948091716Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -75,7 +93,7 @@ entries:
     version: 0.1.0-dev.0.master.6
   - apiVersion: v2
     appVersion: 3abadb4
-    created: "2022-02-15T12:55:42.849108333Z"
+    created: "2022-02-15T13:06:53.943175145Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -93,7 +111,7 @@ entries:
     version: 0.1.0-dev.0.master.5
   - apiVersion: v2
     appVersion: a6c1dde
-    created: "2022-02-15T12:55:42.844788101Z"
+    created: "2022-02-15T13:06:53.93874847Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -111,7 +129,7 @@ entries:
     version: 0.1.0-dev.0.master.4
   - apiVersion: v2
     appVersion: 0548f9d
-    created: "2022-02-15T12:55:42.839875863Z"
+    created: "2022-02-15T13:06:53.934433295Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -126,7 +144,7 @@ entries:
     version: 0.1.0-dev.0.master.3
   - apiVersion: v2
     appVersion: 66a267c
-    created: "2022-02-15T12:55:42.834908526Z"
+    created: "2022-02-15T13:06:53.928622929Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -140,8 +158,26 @@ entries:
     version: 0.1.0-dev.0.master.2
   jupyterhub-zenith-nfs:
   - apiVersion: v2
+    appVersion: 4fac078
+    created: "2022-02-15T13:06:53.967165006Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 1.2.0
+    description: JupyterHub with Zenith integration and NFS
+    digest: 6785c8b739e8ebddd6e60538b9ffde39daeccb6820a5d701f762c8556c43f5e2
+    icon: https://zero-to-jupyterhub.readthedocs.io/en/latest/_static/hublogo.svg
+    keywords:
+    - jupyter
+    - jupyterhub
+    name: jupyterhub-zenith-nfs
+    type: application
+    urls:
+    - jupyterhub-zenith-nfs-0.1.0-dev.0.master.12.tgz
+    version: 0.1.0-dev.0.master.12
+  - apiVersion: v2
     appVersion: 8537c2b
-    created: "2022-02-15T12:55:42.86842158Z"
+    created: "2022-02-15T13:06:53.962627032Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -157,4 +193,4 @@ entries:
     urls:
     - jupyterhub-zenith-nfs-0.1.0-dev.0.master.11.tgz
     version: 0.1.0-dev.0.master.11
-generated: "2022-02-15T12:55:42.823146036Z"
+generated: "2022-02-15T13:06:53.913913914Z"
