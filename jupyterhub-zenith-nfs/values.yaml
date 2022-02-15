@@ -65,8 +65,6 @@ jupyterhub:
       guarantee: .5
     storage:
       capacity: "10Gi"
-    storage:
-      capacity: "10Gi"
       extraVolumes:
         - name: dac-nvme
           persistentVolumeClaim:
