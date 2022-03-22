@@ -208,7 +208,6 @@
                                 },
                                 "storage": {
                                     "type": "object",
-                                    "form": true,
                                     "properties": {
                                         "capacity": {
                                             "type": "string",
@@ -259,7 +258,8 @@
                                                                 "type": "string",
                                                                 "title": "NFS server hostname or IP address",
                                                                 "form": true,
-                                                                "render": "textArea"
+                                                                "render": "textArea",
+                                                                "default": "192.168.3.4"
                                                             }
                                                         }
                                                     }
