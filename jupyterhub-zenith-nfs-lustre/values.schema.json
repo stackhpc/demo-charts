@@ -1,0 +1,236 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "jupyterhub": {
+            "type": "object",
+            "properties": {
+                "hub": {
+                    "type": "object",
+                    "properties": {
+                        "extraConfig": {
+                            "type": "object",
+                            "properties": {
+                                "remoteuser.py": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "networkPolicy": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "prePuller": {
+                    "type": "object",
+                    "properties": {
+                        "hook": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "proxy": {
+                    "type": "object",
+                    "properties": {
+                        "chp": {
+                            "type": "object",
+                            "properties": {
+                                "networkPolicy": {
+                                    "type": "object",
+                                    "properties": {
+                                        "enabled": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "service": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "singleuser": {
+                    "type": "object",
+                    "properties": {
+                        "cpu": {
+                            "cpu": {
+                                "type": "object",
+                                "properties": {
+                                    "guarantee": {
+                                        "type": "number",
+                                        "title": "CPU guarantee",
+                                        "form": true,
+                                        "render": "slider",
+                                        "sliderMin": ".5",
+                                        "sliderMax": "24",
+                                        "sliderStep": "0.5",
+                                        "description": "CPU request for each single-user notebook"
+                                    },
+                                    "limit": {
+                                        "type": "number",
+                                        "title": "CPU limit",
+                                        "form": true,
+                                        "render": "slider",
+                                        "sliderMin": ".5",
+                                        "sliderMax": "24",
+                                        "sliderStep": "0.5",
+                                        "description": "CPU limit for each single-user notebook"
+                                }
+                            }
+                        },
+                        "defaultUrl": {
+                            "type": "string"
+                        },
+                        "extraEnv": {
+                            "type": "object",
+                            "properties": {
+                                "JUPYTERHUB_SINGLEUSER_APP": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "memory": {
+                            "type": "object",
+                            "properties": {
+                                "guarantee": {
+                                    "type": "string",
+                                    "title": "Memory guarantee",
+                                    "form": true,
+                                    "render": "slider",
+                                    "sliderMin": "1",
+                                    "sliderMax": "512",
+                                    "sliderStep": 1,
+                                    "sliderUnit": "G",
+                                    "description": "Memory request for each single-user notebook"
+                                },
+                                "limit": {
+                                    "type": "string",
+                                    "title": "Memory limit for each single user notebook",
+                                    "form": true,
+                                    "render": "slider",
+                                    "sliderMin": "1",
+                                    "sliderMax": "512",
+                                    "sliderStep": 1,
+                                    "sliderUnit": "G",
+                                    "description": "Memory limit for each single-user notebook"
+                                }
+                            }
+                        },
+                        "networkPolicy": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                }
+                            }
+                        },
+                        "profileList": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "default": {
+                                        "type": "boolean"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "display_name": {
+                                        "type": "string"
+                                    },
+                                    "kubespawner_override": {
+                                        "type": "object",
+                                        "properties": {
+                                            "image": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "storage": {
+                            "type": "object",
+                            "form": true,
+                            "properties": {
+                                "capacity": {
+                                    "type": "string",
+                                    "title": "Local storage capacity for each user notebook",
+                                    "form": true,
+                                    "render": "slider",
+                                    "sliderMin": "10",
+                                    "sliderMax": "300",
+                                    "sliderStep": 5,
+                                    "sliderUnit": "Gi"
+                                },
+                                "extraVolumeMounts": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "mountPath": {
+                                                "type": "string",
+                                                "title": "NFS mount point",
+                                                "form": true,
+                                                "render": "textArea",
+                                                "description": "Path of the NFS mount point in the Jupyternotebook (doesn't need to exist)"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "extraVolumes": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "nfs": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "path": {
+                                                        "type": "string",
+                                                        "title": "NFS server exported path",
+                                                        "form": true,
+                                                        "render": "textArea"
+                                                    },
+                                                    "server": {
+                                                        "type": "string",
+                                                        "title": "NFS server hostname or IP address",
+                                                        "form": true,
+                                                        "render": "textArea"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
