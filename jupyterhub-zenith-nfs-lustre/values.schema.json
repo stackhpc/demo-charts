@@ -184,11 +184,7 @@
                                         "type": "object",
                                         "properties": {
                                             "mountPath": {
-                                                "type": "string",
-                                                "title": "NFS mount point",
-                                                "form": true,
-                                                "render": "textArea",
-                                                "description": "Path of the NFS mount point in the Jupyternotebook (doesn't need to exist)"
+                                                "type": "string"
                                             },
                                             "name": {
                                                 "type": "string"
@@ -208,17 +204,10 @@
                                                 "type": "object",
                                                 "properties": {
                                                     "path": {
-                                                        "type": "string",
-                                                        "title": "NFS server exported path",
-                                                        "form": true,
-                                                        "render": "textArea"
+                                                        "type": "string"
                                                     },
                                                     "server": {
-                                                        "type": "string",
-                                                        "title": "NFS server hostname or IP address",
-                                                        "form": true,
-                                                        "render": "textArea",
-                                                        "default": "192.168.3.4"
+                                                        "type": "string"
                                                         }
                                                     }
                                                 }
