@@ -57,6 +57,23 @@ jupyterhub:
         description: "Python, R, and Scala support for Apache Spark."
         kubespawner_override:
           image: jupyter/all-spark-notebook:2022-02-12
+      - display_name: "GPU enabled Python, Julia and R environment"
+        description: "Leverage Jupyter Notebooks with the power of your NVIDIA GPU via CUDA in Tensorflow and Pytorch."
+        kubespawner_override:
+          image: cschranz/gpu-jupyter:v1.4_cuda-11.2_ubuntu-20.04
+      - display_name: "STFC SciML Benchmark"
+        description: "CUDA-enabled Jupyter Notebook populated with an example benchmark notebook"
+        kubespawner_override:
+          image: cschranz/gpu-jupyter:v1.4_cuda-11.2_ubuntu-20.04
+          lifecycle_hooks:
+            postStart:
+              exec:
+                command:
+                  - 'bash'
+                  - '-c'
+                  - >
+                    pip install nbgitpuller && gitpuller https://github.com/stackhpc/IRIS-sciml-bench main IRIS-sciml-bench
+
     memory:
       limit: "1G"
       guarantee: "1G"
