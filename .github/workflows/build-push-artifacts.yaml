@@ -3,6 +3,7 @@ name: Publish artifacts
 on: push
 jobs:
   helm_lint:
+    name: Lint Helm charts
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -36,6 +37,7 @@ jobs:
   build_push_chart:
     name: Build and push Helm charts
     runs-on: ubuntu-latest
+    needs: helm_lint
     steps:
       - name: Check out the repository
         uses: actions/checkout@v2
