@@ -2,8 +2,26 @@ apiVersion: v1
 entries:
   daskhub-zenith-nfs-lustre:
   - apiVersion: v2
+    appVersion: d98ebd0
+    created: "2022-03-23T14:27:17.037301477Z"
+    dependencies:
+    - name: daskhub
+      repository: https://helm.dask.org/
+      version: 2022.2.0
+    description: DaskHub with Zenith integration and a Lustre NFS mount
+    digest: 2211878bfeffd2b835566d07f64e8e7b952673e44f2d9e34009c6692586ba79b
+    icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+    keywords:
+    - dask
+    - daskhub
+    name: daskhub-zenith-nfs-lustre
+    type: application
+    urls:
+    - daskhub-zenith-nfs-lustre-0.1.0-dev.0.master.24.tgz
+    version: 0.1.0-dev.0.master.24
+  - apiVersion: v2
     appVersion: 5f8c7e1
-    created: "2022-03-23T14:07:58.694089686Z"
+    created: "2022-03-23T14:27:17.030301924Z"
     dependencies:
     - name: daskhub
       repository: https://helm.dask.org/
@@ -21,7 +39,7 @@ entries:
     version: 0.1.0-dev.0.master.22
   - apiVersion: v2
     appVersion: dbe3425
-    created: "2022-03-23T14:07:58.686022194Z"
+    created: "2022-03-23T14:27:17.024046477Z"
     dependencies:
     - name: daskhub
       repository: https://helm.dask.org/
@@ -39,7 +57,7 @@ entries:
     version: 0.1.0-dev.0.master.18
   - apiVersion: v2
     appVersion: e14af87
-    created: "2022-03-23T14:07:58.679044467Z"
+    created: "2022-03-23T14:27:17.016725222Z"
     dependencies:
     - name: daskhub
       repository: https://helm.dask.org/
@@ -57,7 +75,7 @@ entries:
     version: 0.1.0-dev.0.master.17
   - apiVersion: v2
     appVersion: e9998ab
-    created: "2022-03-23T14:07:58.669908509Z"
+    created: "2022-03-23T14:27:17.009666869Z"
     dependencies:
     - name: daskhub
       repository: https://helm.dask.org/
@@ -75,7 +93,7 @@ entries:
     version: 0.1.0-dev.0.master.16
   - apiVersion: v2
     appVersion: ba2ab48
-    created: "2022-03-23T14:07:58.653811026Z"
+    created: "2022-03-23T14:27:17.003775125Z"
     dependencies:
     - name: daskhub
       repository: https://helm.dask.org/
@@ -93,7 +111,7 @@ entries:
     version: 0.1.0-dev.0.master.15
   - apiVersion: v2
     appVersion: 4aae2a2
-    created: "2022-03-23T14:07:58.64405053Z"
+    created: "2022-03-23T14:27:16.99783378Z"
     dependencies:
     - name: daskhub
       repository: https://helm.dask.org/
@@ -111,7 +129,7 @@ entries:
     version: 0.1.0-dev.0.feature-add-linting-ci.21
   - apiVersion: v2
     appVersion: 87ce643
-    created: "2022-03-23T14:07:58.634643255Z"
+    created: "2022-03-23T14:27:16.990836327Z"
     dependencies:
     - name: daskhub
       repository: https://helm.dask.org/
@@ -129,8 +147,26 @@ entries:
     version: 0.1.0-dev.0.feature-add-linting-ci.19
   jupyterhub-zenith:
   - apiVersion: v2
+    appVersion: d98ebd0
+    created: "2022-03-23T14:27:17.093259898Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 1.2.0
+    description: JupyterHub with Zenith integration
+    digest: 484f437467d60b80fc21aeaaaaaa26e54f2420c2b037a8d609bbb476de3c658d
+    icon: https://zero-to-jupyterhub.readthedocs.io/en/latest/_static/hublogo.svg
+    keywords:
+    - jupyter
+    - jupyterhub
+    name: jupyterhub-zenith
+    type: application
+    urls:
+    - jupyterhub-zenith-0.1.0-dev.0.master.24.tgz
+    version: 0.1.0-dev.0.master.24
+  - apiVersion: v2
     appVersion: 5f8c7e1
-    created: "2022-03-23T14:07:58.758807639Z"
+    created: "2022-03-23T14:27:17.088279761Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -148,7 +184,7 @@ entries:
     version: 0.1.0-dev.0.master.22
   - apiVersion: v2
     appVersion: dbe3425
-    created: "2022-03-23T14:07:58.745803045Z"
+    created: "2022-03-23T14:27:17.078420786Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -166,7 +202,7 @@ entries:
     version: 0.1.0-dev.0.master.18
   - apiVersion: v2
     appVersion: e14af87
-    created: "2022-03-23T14:07:58.739965689Z"
+    created: "2022-03-23T14:27:17.073277948Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -184,7 +220,7 @@ entries:
     version: 0.1.0-dev.0.master.17
   - apiVersion: v2
     appVersion: e9998ab
-    created: "2022-03-23T14:07:58.731979301Z"
+    created: "2022-03-23T14:27:17.069042416Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -202,7 +238,7 @@ entries:
     version: 0.1.0-dev.0.master.16
   - apiVersion: v2
     appVersion: ba2ab48
-    created: "2022-03-23T14:07:58.727274213Z"
+    created: "2022-03-23T14:27:17.064896285Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -220,7 +256,7 @@ entries:
     version: 0.1.0-dev.0.master.15
   - apiVersion: v2
     appVersion: ca596ec
-    created: "2022-03-23T14:07:58.722052794Z"
+    created: "2022-03-23T14:27:17.060372451Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -238,7 +274,7 @@ entries:
     version: 0.1.0-dev.0.master.13
   - apiVersion: v2
     appVersion: 4fac078
-    created: "2022-03-23T14:07:58.715796612Z"
+    created: "2022-03-23T14:27:17.055786516Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -256,7 +292,7 @@ entries:
     version: 0.1.0-dev.0.master.12
   - apiVersion: v2
     appVersion: 8537c2b
-    created: "2022-03-23T14:07:58.710716802Z"
+    created: "2022-03-23T14:27:17.051577184Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -274,7 +310,7 @@ entries:
     version: 0.1.0-dev.0.master.11
   - apiVersion: v2
     appVersion: e168360
-    created: "2022-03-23T14:07:58.791307225Z"
+    created: "2022-03-23T14:27:17.121007607Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -292,7 +328,7 @@ entries:
     version: 0.1.0-dev.0.master.8
   - apiVersion: v2
     appVersion: 7a2864b
-    created: "2022-03-23T14:07:58.786459229Z"
+    created: "2022-03-23T14:27:17.116010369Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -310,7 +346,7 @@ entries:
     version: 0.1.0-dev.0.master.7
   - apiVersion: v2
     appVersion: d0dad63
-    created: "2022-03-23T14:07:58.781543828Z"
+    created: "2022-03-23T14:27:17.111780937Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -328,7 +364,7 @@ entries:
     version: 0.1.0-dev.0.master.6
   - apiVersion: v2
     appVersion: 3abadb4
-    created: "2022-03-23T14:07:58.775484958Z"
+    created: "2022-03-23T14:27:17.107519005Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -346,7 +382,7 @@ entries:
     version: 0.1.0-dev.0.master.5
   - apiVersion: v2
     appVersion: a6c1dde
-    created: "2022-03-23T14:07:58.770386247Z"
+    created: "2022-03-23T14:27:17.10149876Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -364,7 +400,7 @@ entries:
     version: 0.1.0-dev.0.master.4
   - apiVersion: v2
     appVersion: 0548f9d
-    created: "2022-03-23T14:07:58.763767542Z"
+    created: "2022-03-23T14:27:17.09743943Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -379,7 +415,7 @@ entries:
     version: 0.1.0-dev.0.master.3
   - apiVersion: v2
     appVersion: 66a267c
-    created: "2022-03-23T14:07:58.752356945Z"
+    created: "2022-03-23T14:27:17.082650318Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -393,7 +429,7 @@ entries:
     version: 0.1.0-dev.0.master.2
   - apiVersion: v2
     appVersion: 4aae2a2
-    created: "2022-03-23T14:07:58.705554187Z"
+    created: "2022-03-23T14:27:17.046031343Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -411,7 +447,7 @@ entries:
     version: 0.1.0-dev.0.feature-add-linting-ci.21
   - apiVersion: v2
     appVersion: 87ce643
-    created: "2022-03-23T14:07:58.699543519Z"
+    created: "2022-03-23T14:27:17.041845111Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -429,8 +465,26 @@ entries:
     version: 0.1.0-dev.0.feature-add-linting-ci.19
   jupyterhub-zenith-nfs:
   - apiVersion: v2
+    appVersion: d98ebd0
+    created: "2022-03-23T14:27:17.171610588Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 1.2.0
+    description: JupyterHub with Zenith integration and NFS
+    digest: d8a645f6529e9d3ee71a36f2bbf7b4e8be2564a531f85b55cab3b31eb58197c7
+    icon: https://zero-to-jupyterhub.readthedocs.io/en/latest/_static/hublogo.svg
+    keywords:
+    - jupyter
+    - jupyterhub
+    name: jupyterhub-zenith-nfs
+    type: application
+    urls:
+    - jupyterhub-zenith-nfs-0.1.0-dev.0.master.24.tgz
+    version: 0.1.0-dev.0.master.24
+  - apiVersion: v2
     appVersion: 5f8c7e1
-    created: "2022-03-23T14:07:58.844305962Z"
+    created: "2022-03-23T14:27:17.166825952Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -448,7 +502,7 @@ entries:
     version: 0.1.0-dev.0.master.22
   - apiVersion: v2
     appVersion: dbe3425
-    created: "2022-03-23T14:07:58.839552272Z"
+    created: "2022-03-23T14:27:17.162499719Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -466,7 +520,7 @@ entries:
     version: 0.1.0-dev.0.master.18
   - apiVersion: v2
     appVersion: e14af87
-    created: "2022-03-23T14:07:58.833668612Z"
+    created: "2022-03-23T14:27:17.158214687Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -484,7 +538,7 @@ entries:
     version: 0.1.0-dev.0.master.17
   - apiVersion: v2
     appVersion: e9998ab
-    created: "2022-03-23T14:07:58.828870419Z"
+    created: "2022-03-23T14:27:17.153446051Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -502,7 +556,7 @@ entries:
     version: 0.1.0-dev.0.master.16
   - apiVersion: v2
     appVersion: ba2ab48
-    created: "2022-03-23T14:07:58.824207934Z"
+    created: "2022-03-23T14:27:17.148831516Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -520,7 +574,7 @@ entries:
     version: 0.1.0-dev.0.master.15
   - apiVersion: v2
     appVersion: ca596ec
-    created: "2022-03-23T14:07:58.817934851Z"
+    created: "2022-03-23T14:27:17.144474883Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -538,7 +592,7 @@ entries:
     version: 0.1.0-dev.0.master.13
   - apiVersion: v2
     appVersion: 4fac078
-    created: "2022-03-23T14:07:58.813145759Z"
+    created: "2022-03-23T14:27:17.139170744Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -556,7 +610,7 @@ entries:
     version: 0.1.0-dev.0.master.12
   - apiVersion: v2
     appVersion: 8537c2b
-    created: "2022-03-23T14:07:58.807755729Z"
+    created: "2022-03-23T14:27:17.134879711Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -574,7 +628,7 @@ entries:
     version: 0.1.0-dev.0.master.11
   - apiVersion: v2
     appVersion: 4aae2a2
-    created: "2022-03-23T14:07:58.802908933Z"
+    created: "2022-03-23T14:27:17.130530679Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -592,7 +646,7 @@ entries:
     version: 0.1.0-dev.0.feature-add-linting-ci.21
   - apiVersion: v2
     appVersion: 87ce643
-    created: "2022-03-23T14:07:58.797896727Z"
+    created: "2022-03-23T14:27:17.125161938Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -610,8 +664,26 @@ entries:
     version: 0.1.0-dev.0.feature-add-linting-ci.19
   jupyterhub-zenith-nfs-customrepo:
   - apiVersion: v2
+    appVersion: d98ebd0
+    created: "2022-03-23T14:27:17.213258601Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 1.2.0
+    description: JupyterHub with Zenith integration, NFS and a custom git repository
+    digest: af776f05429f3b6ee7520f10a9f6bc842457fcf4614edf2133f10888661eb5a6
+    icon: https://zero-to-jupyterhub.readthedocs.io/en/latest/_static/hublogo.svg
+    keywords:
+    - jupyter
+    - jupyterhub
+    name: jupyterhub-zenith-nfs-customrepo
+    type: application
+    urls:
+    - jupyterhub-zenith-nfs-customrepo-0.1.0-dev.0.master.24.tgz
+    version: 0.1.0-dev.0.master.24
+  - apiVersion: v2
     appVersion: 5f8c7e1
-    created: "2022-03-23T14:07:58.890072158Z"
+    created: "2022-03-23T14:27:17.208931669Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -629,7 +701,7 @@ entries:
     version: 0.1.0-dev.0.master.22
   - apiVersion: v2
     appVersion: dbe3425
-    created: "2022-03-23T14:07:58.884990847Z"
+    created: "2022-03-23T14:27:17.204338234Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -647,7 +719,7 @@ entries:
     version: 0.1.0-dev.0.master.18
   - apiVersion: v2
     appVersion: e14af87
-    created: "2022-03-23T14:07:58.879659221Z"
+    created: "2022-03-23T14:27:17.199683699Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -665,7 +737,7 @@ entries:
     version: 0.1.0-dev.0.master.17
   - apiVersion: v2
     appVersion: e9998ab
-    created: "2022-03-23T14:07:58.87488023Z"
+    created: "2022-03-23T14:27:17.195443567Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -683,7 +755,7 @@ entries:
     version: 0.1.0-dev.0.master.16
   - apiVersion: v2
     appVersion: ba2ab48
-    created: "2022-03-23T14:07:58.868930166Z"
+    created: "2022-03-23T14:27:17.190108427Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -701,7 +773,7 @@ entries:
     version: 0.1.0-dev.0.master.15
   - apiVersion: v2
     appVersion: ca596ec
-    created: "2022-03-23T14:07:58.86391986Z"
+    created: "2022-03-23T14:27:17.185789494Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -719,7 +791,7 @@ entries:
     version: 0.1.0-dev.0.master.13
   - apiVersion: v2
     appVersion: 4aae2a2
-    created: "2022-03-23T14:07:58.858962857Z"
+    created: "2022-03-23T14:27:17.181450962Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -737,7 +809,7 @@ entries:
     version: 0.1.0-dev.0.feature-add-linting-ci.21
   - apiVersion: v2
     appVersion: 87ce643
-    created: "2022-03-23T14:07:58.850260326Z"
+    created: "2022-03-23T14:27:17.17589962Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -755,8 +827,26 @@ entries:
     version: 0.1.0-dev.0.feature-add-linting-ci.19
   jupyterhub-zenith-nfs-lustre:
   - apiVersion: v2
+    appVersion: d98ebd0
+    created: "2022-03-23T14:27:17.250808384Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 1.2.0
+    description: JupyterHub with Zenith integration and a Lustre NFS mount
+    digest: a69d00cb83d476743fdc838ecb42efee53e25d63865e0f2155fd54d9c8459da5
+    icon: https://zero-to-jupyterhub.readthedocs.io/en/latest/_static/hublogo.svg
+    keywords:
+    - jupyter
+    - jupyterhub
+    name: jupyterhub-zenith-nfs-lustre
+    type: application
+    urls:
+    - jupyterhub-zenith-nfs-lustre-0.1.0-dev.0.master.24.tgz
+    version: 0.1.0-dev.0.master.24
+  - apiVersion: v2
     appVersion: 5f8c7e1
-    created: "2022-03-23T14:07:58.928769221Z"
+    created: "2022-03-23T14:27:17.245969447Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -774,7 +864,7 @@ entries:
     version: 0.1.0-dev.0.master.22
   - apiVersion: v2
     appVersion: dbe3425
-    created: "2022-03-23T14:07:58.922660248Z"
+    created: "2022-03-23T14:27:17.240941709Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -792,7 +882,7 @@ entries:
     version: 0.1.0-dev.0.master.18
   - apiVersion: v2
     appVersion: e14af87
-    created: "2022-03-23T14:07:58.917873656Z"
+    created: "2022-03-23T14:27:17.236657577Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -810,7 +900,7 @@ entries:
     version: 0.1.0-dev.0.master.17
   - apiVersion: v2
     appVersion: e9998ab
-    created: "2022-03-23T14:07:58.911950594Z"
+    created: "2022-03-23T14:27:17.231998842Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -828,7 +918,7 @@ entries:
     version: 0.1.0-dev.0.master.16
   - apiVersion: v2
     appVersion: ba2ab48
-    created: "2022-03-23T14:07:58.907041594Z"
+    created: "2022-03-23T14:27:17.226977904Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -846,7 +936,7 @@ entries:
     version: 0.1.0-dev.0.master.15
   - apiVersion: v2
     appVersion: 4aae2a2
-    created: "2022-03-23T14:07:58.90205769Z"
+    created: "2022-03-23T14:27:17.222682272Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -864,7 +954,7 @@ entries:
     version: 0.1.0-dev.0.feature-add-linting-ci.21
   - apiVersion: v2
     appVersion: 87ce643
-    created: "2022-03-23T14:07:58.89535228Z"
+    created: "2022-03-23T14:27:17.218008637Z"
     dependencies:
     - name: jupyterhub
       repository: https://jupyterhub.github.io/helm-chart/
@@ -880,4 +970,4 @@ entries:
     urls:
     - jupyterhub-zenith-nfs-lustre-0.1.0-dev.0.feature-add-linting-ci.19.tgz
     version: 0.1.0-dev.0.feature-add-linting-ci.19
-generated: "2022-03-23T14:07:58.615849907Z"
+generated: "2022-03-23T14:27:16.98318647Z"
