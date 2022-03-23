@@ -72,4 +72,3 @@ jupyterhub:
       extraVolumeMounts:
         - name: dac-nvme
           mountPath: /nvme-nfs
-
