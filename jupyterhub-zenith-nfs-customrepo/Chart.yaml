@@ -3,7 +3,7 @@ name: jupyterhub-zenith-nfs-customrepo
 description: JupyterHub with Zenith integration, NFS and a custom git repository
 type: application
 version: 0.1.0
-icon: https://zero-to-jupyterhub.readthedocs.io/en/latest/_static/hublogo.svg
+icon: https://raw.githubusercontent.com/jupyterhub/helm-chart/gh-pages/images/hublogo.svg
 keywords: [jupyter, jupyterhub]
 
 dependencies:
