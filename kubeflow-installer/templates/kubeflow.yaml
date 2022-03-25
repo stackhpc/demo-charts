@@ -1,0 +1,21 @@
+{{- define "kubeflow-installer.kubeflow.config" -}}
+{{- include "kubeflow-installer.job.defaults" (list . "kubeflow") }}
+installType: kustomize
+kustomize:
+  kustomizationTemplate: |
+    resources:
+      {{- range .Values.kubeflow.manifests }}
+      - {{ tpl . $ }}
+      {{- end }}
+  {{- with .Values.kubeflow.kustomization }}
+  kustomization: {{ toYaml . | nindent 4 }}
+  {{- end }}
+{{- end }}
+
+{{-
+  include "addon.job" (list
+    .
+    "kubeflow"
+    "kubeflow-installer.kubeflow.config"
+  )
+}}

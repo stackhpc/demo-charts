@@ -1,0 +1,150 @@
+# Default values for kubeflow-installer.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# The name of the Kubernetes cluster we are deploying to
+# Defaults to the release name if not given for use as a dependency of openstack-cluster
+clusterName: "{{ .Release.Name }}"
+
+# The Kubernetes version of the target cluster
+# This is treated as a template at rendering time
+kubernetesVersion: v1.22
+
+# Details of a secret containing a kubeconfig file for a remote cluster
+# If given, this is used in preference to a service account
+kubeconfigSecret: {}
+  # The name of the secret
+  # This is treated as a template during rendering
+  #name:
+  # The key of the kubeconfig file in the secret
+  #key: value
+
+# Options for the service account to use
+# A pre-existing service account can be used, or a new one can be created
+#
+# A service account is always required as it is used by the pre-delete hook
+# to suspend any install jobs that are still running prior to running the deletion
+#
+# The permissions required by the service account depend on whether the installation
+# is targetting a remote cluster or the local cluster
+#
+# Whether the installation target is local or remote, the service account needs to
+# have permission to list and patch jobs in the release namespace for the delete hook
+# in order to suspend any running install jobs
+#
+# When the installation targets the local cluster, the service account must also have
+# permission to create any resources that need to be installed, which could be into
+# other namespaces - the cluster-admin cluster role is normally used for this
+serviceAccount:
+  # Indicates whether to create a new service account
+  create: true
+  # The name of the cluster role to bind the created service account to
+  clusterRoleName: cluster-admin
+  # The name of the service account
+  # If create = true, this is the name of the created service account
+  # If create = false, this is the name of an existing service account to use
+  # This is treated as a template during rendering
+  name: "{{ include \"kubeflow-installer.fullname\" . }}-deployer"
+
+jobDefaults:
+  image:
+    repository: ghcr.io/stackhpc/k8s-utils
+    tag: main
+    pullPolicy: IfNotPresent
+  imagePullSecrets: []
+  backoffLimit: 1000
+  activeDeadlineSeconds: 3600
+  podSecurityContext:
+    runAsNonRoot: true
+  securityContext:
+    allowPrivilegeEscalation: false
+  resources: {}
+  hostNetwork: false
+  tolerations: []
+  nodeSelector: {}
+  affinity: {}
+
+# Settings for kubeflow
+kubeflow:
+  # Indicates if kubeflow should be deployed
+  enabled: true
+  # The version of kubeflow to deploy
+  version: v1.5.0
+  # The URLs of the kubeflow manifests
+  manifests:
+  # Istio
+    - https://github.com/kubeflow/manifests//common/istio-1-11/istio-crds/base/?ref={{ .Values.kubeflow.version }}
+    - https://github.com/kubeflow/manifests//common/istio-1-11/istio-namespace/base/?ref={{ .Values.kubeflow.version }}
+    - https://github.com/kubeflow/manifests//common/istio-1-11/istio-install/base/?ref={{ .Values.kubeflow.version }}
+  # OIDC Authservice
+    - https://github.com/kubeflow/manifests//common/oidc-authservice/base/?ref={{ .Values.kubeflow.version }}
+  # Dex
+    - https://github.com/kubeflow/manifests//common/dex/overlays/istio/?ref={{ .Values.kubeflow.version }}
+  # KNative
+    - https://github.com/kubeflow/manifests//common/knative/knative-serving/overlays/gateways/?ref={{ .Values.kubeflow.version }}
+    - https://github.com/kubeflow/manifests//common/knative/knative-eventing/base/?ref={{ .Values.kubeflow.version }}
+    - https://github.com/kubeflow/manifests//common/istio-1-11/cluster-local-gateway/base/?ref={{ .Values.kubeflow.version }}
+  # Kubeflow namespace
+    - https://github.com/kubeflow/manifests//common/kubeflow-namespace/base/?ref={{ .Values.kubeflow.version }}
+  # Kubeflow Roles
+    - https://github.com/kubeflow/manifests//common/kubeflow-roles/base/?ref={{ .Values.kubeflow.version }}
+  # Kubeflow Istio Resources
+    - https://github.com/kubeflow/manifests//common/istio-1-11/kubeflow-istio-resources/base/?ref={{ .Values.kubeflow.version }}
+  # Kubeflow Pipelines
+    - https://github.com/kubeflow/manifests//apps/pipeline/upstream/env/platform-agnostic-multi-user/?ref={{ .Values.kubeflow.version }}
+  # KFServing
+    - https://github.com/kubeflow/manifests//apps/kfserving/upstream/overlays/kubeflow/?ref={{ .Values.kubeflow.version }}
+  # Katib
+    - https://github.com/kubeflow/manifests//apps/katib/upstream/installs/katib-with-kubeflow/?ref={{ .Values.kubeflow.version }}
+  # Central Dashboard
+    - https://github.com/kubeflow/manifests//apps/centraldashboard/upstream/overlays/istio/?ref={{ .Values.kubeflow.version }}
+  # Certificate issuer
+    - https://github.com/kubeflow/manifests//common/cert-manager/kubeflow-issuer/base/?ref={{ .Values.kubeflow.version }}
+  # Admission Webhook
+    - https://github.com/kubeflow/manifests//apps/admission-webhook/upstream/overlays/cert-manager/?ref={{ .Values.kubeflow.version }}
+  # Notebook Controller
+    - https://github.com/kubeflow/manifests//apps/jupyter/jupyter-web-app/upstream/overlays/istio/?ref={{ .Values.kubeflow.version }}
+  # Jupyter Web App
+    - https://github.com/kubeflow/manifests//apps/jupyter/notebook-controller/upstream/overlays/kubeflow/?ref={{ .Values.kubeflow.version }}
+  # Profiles + KFAM
+    - https://github.com/kubeflow/manifests//apps/profiles/upstream/overlays/kubeflow/?ref={{ .Values.kubeflow.version }}
+  # Volumes Web App
+    - https://github.com/kubeflow/manifests//apps/volumes-web-app/upstream/overlays/istio/?ref={{ .Values.kubeflow.version }}
+  # Tensorboards Controller
+    - https://github.com/kubeflow/manifests//apps/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/?ref={{ .Values.kubeflow.version }}
+  # Tensorboard Web App
+    - https://github.com/kubeflow/manifests//apps/tensorboard/tensorboards-web-app/upstream/overlays/istio/?ref={{ .Values.kubeflow.version }}
+  # Training Operator
+    - https://github.com/kubeflow/manifests//apps/training-operator/upstream/overlays/kubeflow/?ref={{ .Values.kubeflow.version }}
+  # User namespace
+    - https://github.com/kubeflow/manifests//common/user-namespace/base/?ref={{ .Values.kubeflow.version }}
+  # KServe
+    - https://github.com/kubeflow/manifests//contrib/kserve/kserve/?ref={{ .Values.kubeflow.version }}
+    - https://github.com/kubeflow/manifests//contrib/kserve/models-web-app/overlays/kubeflow/?ref={{ .Values.kubeflow.version }}
+  
+  kustomization:
+    patches:
+      - patch: |-
+          - op: add
+            path: /metadata/annotations/admissions.enforcer~1disabled
+            value: true
+        target:
+          kind: MutatingWebhookConfiguration
+          name: istio-sidecar-injector
+      # Need these to ensure that training-operator pods don't get OOMed
+      - patch: |-
+          - op: replace
+            path: /spec/template/spec/containers/0/resources/limits/memory
+            value: 100Mi
+        target:
+          kind: Deployment
+          name: training-operator
+      - patch: |-
+          - op: replace
+            path: /spec/template/spec/containers/0/resources/requests/memory
+            value: 80Mi
+        target:
+          kind: Deployment
+          name: training-operator
+
+extraAddons: {}
