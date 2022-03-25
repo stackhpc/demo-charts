@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.operator.name }}
+  namespace: {{ .Values.operator.namespace }}
+  labels:
+    app: rook-nfs-operator
+    {{- include "storage-nvme-rook-nfs.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rook-nfs-operator
+      {{- include "storage-nvme-rook-nfs.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app: rook-nfs-operator
+        {{- include "storage-nvme-rook-nfs.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "storage-nvme-rook-nfs.operator.serviceAccountName" . }}
+      containers:
+        - name: rook-nfs-operator
+          image: {{ printf "%s:%s" .Values.operator.image .Values.operator.tag }}
+          imagePullPolicy: IfNotPresent
+          args: ["nfs", "operator"]
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace

@@ -1,0 +1,111 @@
+# Default values for nvme-rook-nfs.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+nameOverride: ""
+
+fullnameOverride: ""
+
+affinity: {}
+
+operator:
+  name: "rook-nfs-operator"
+  image: "rook/nfs"
+  tag: "v1.7.3"
+  namespace: "rook-nfs-system"
+  serviceAccount:
+    # Annotations to add to the service account
+    annotations: {}
+    # The prefix of the of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    prefix: ""
+
+nfsserver:
+  name: "rook-nfs"
+  namespace: "rook-nfs"
+  replicaCount: 1
+  serviceAccount:
+    # Annotations to add to the service account
+    annotations: {}
+    # The prefix of the name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    prefix: ""
+  exports:
+    - name: nvme-nfs-share
+      server:
+        accessMode: ReadWrite
+        squash: "none"
+      persistentVolumeClaim:
+        claimName: local-nvme-claim
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 2000Gi
+        storageClassName: local-nvme
+      nfsStorageClassName: rook-nfs-nvme
+
+podAnnotations: {}
+
+provisioner:
+  common:
+    # List of names of worker node block devices to create local volumes from
+    blockDeviceNames:
+      - /dev/vdb
+    # Mount the host's `/dev/` by default so that block device symlinks can be
+    # resolved by the containers
+    mountDevVolume: true
+    additionalHostPathVolumes:
+      provisioner-mnt: /mnt
+      provisioner-fstab: /etc/fstab
+  classes:
+  # Defines name of storage class
+  - name: local-nvme
+    # Path on the host where local volumes of this storage class are mounted
+    # under.
+    hostDir: /mnt/disks
+    # Optionally specify mount path of local volumes. By default, we use same
+    # path as hostDir in container.
+    mountDir: /mnt/disks
+    # File name pattern to discover. By default, discover all file names.
+    namePattern: "*-dev-vd*"
+    # Use dd to zero out block dev in two iterations
+    blockCleanerCommand:
+      - "/scripts/quick_reset.sh"
+    # Uncomment to create storage class object and configure it.
+    storageClass:
+      # Available reclaim policies: Delete/Retain, defaults: Delete.
+      reclaimPolicy: Delete
+      # set as default class
+      isDefaultClass: false
+  daemonset:
+    podLabels: {}
+    podAnnotations: {}
+    privileged: true
+    additionalHostPathVolumes: []
+    initContainers:
+      - name: wait-for-prepare-disk
+        image: debian
+        imagePullPolicy: Always
+        command: ['/bin/sh', '-c', 'bash -c "${CHECK_SCRIPT}"']
+        env:
+          - name: CHECK_SCRIPT
+            value: |
+              #!/usr/bin/env bash
+              set -euo pipefail
+              set -x
+              while [[ $(awk '$2 == "/mnt" {print $1}' /proc/mounts | wc -l) -gt 0 ]]; do
+                sleep 5
+              done
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          # OpenStack flavor types are available to us, so use them for scheduling
+          - matchExpressions:
+            - key: node.kubernetes.io/instance-type
+              operator: In
+              values:
+                - vm.iris.cpu.dac.quarter
+                - vm.iris.cpu.dac.half
+                - vm.iris.cpu.dac.full
