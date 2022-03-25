@@ -15,9 +15,9 @@ kubernetesVersion: v1.22
 kubeconfigSecret: {}
   # The name of the secret
   # This is treated as a template during rendering
-  #name:
+  # name:
   # The key of the kubeconfig file in the secret
-  #key: value
+  # key: value
 
 # Options for the service account to use
 # A pre-existing service account can be used, or a new one can be created
@@ -121,7 +121,7 @@ kubeflow:
   # KServe
     - https://github.com/kubeflow/manifests//contrib/kserve/kserve/?ref={{ .Values.kubeflow.version }}
     - https://github.com/kubeflow/manifests//contrib/kserve/models-web-app/overlays/kubeflow/?ref={{ .Values.kubeflow.version }}
-  
+
   kustomization:
     patches:
       - patch: |-

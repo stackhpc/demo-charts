@@ -1,6 +1,6 @@
 apiVersion: v2
 name: kubeflow-installer
-description: A Helm chart to install Kubeflow 
+description: A Helm chart to install Kubeflow
 icon: https://github.com/kubeflow/marketing-materials/raw/master/logos/Raster/Kubeflow-Logo-RGB.png
 type: application
 
