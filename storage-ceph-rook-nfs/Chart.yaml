@@ -1,0 +1,7 @@
+apiVersion: v2
+name: storage-ceph-rook-nfs
+description: Deploy Rook NFS on Arcus Ceph
+type: application
+version: 0.1.0
+appVersion: "1.7"
+icon: https://raw.githubusercontent.com/rook/rook/master/Documentation/media/logo.svg

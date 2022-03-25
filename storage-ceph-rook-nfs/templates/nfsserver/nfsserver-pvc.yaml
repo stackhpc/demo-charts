@@ -1,0 +1,16 @@
+{{- range .Values.nfsserver.exports }}
+---
+{{- $pvc := .persistentVolumeClaim }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ $pvc.claimName }}
+  namespace: {{ $.Values.nfsserver.namespace }} # namespace:nfsserver
+spec:
+  accessModes:
+    {{ $pvc.accessModes | toYaml }}
+  resources:
+    requests:
+      storage: {{ $pvc.resources.requests.storage }}
+  storageClassName: {{ $pvc.storageClassName }}
+{{- end }}
