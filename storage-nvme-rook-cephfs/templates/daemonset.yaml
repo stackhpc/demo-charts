@@ -1,0 +1,122 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ include "storage-nvme-rook-cephfs.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "storage-nvme-rook-cephfs.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ template "storage-nvme-rook-cephfs.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ template "storage-nvme-rook-cephfs.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+{{- if .Values.provisioner.daemonset.podLabels }}
+{{ .Values.provisioner.daemonset.podLabels | toYaml | trim | indent 8 }}
+{{- end }}
+      annotations:
+{{- if .Values.provisioner.daemonset.podAnnotations }}
+{{ .Values.provisioner.daemonset.podAnnotations | toYaml | trim | indent 8 }}
+{{- end }}
+    spec:
+      hostPID: true
+      nodeSelector:
+        kubernetes.io/os: linux
+{{- if .Values.provisioner.daemonset.affinity }}
+      affinity:
+        {{ toYaml .Values.provisioner.daemonset.affinity | nindent 8 }}
+{{- end }}
+      initContainers:
+        - name: prepare-disks
+          image: alpine
+          command: ['/bin/sh', '-c', 'nsenter -t 1 -m -u -i -n -p -- bash -c "${STARTUP_SCRIPT}"']
+          {{- if .Values.provisioner.daemonset.imagePullPolicy }}
+          imagePullPolicy: {{ .Values.provisioner.daemonset.imagePullPolicy }}
+          {{- end }}
+          securityContext:
+            privileged: {{ .Values.provisioner.daemonset.privileged }}
+{{- if .Values.provisioner.daemonset.resources }}
+          resources:
+            {{ toYaml .Values.provisioner.daemonset.resources | nindent 12 }}
+{{- end }}
+          volumeMounts:
+            {{- if .Values.provisioner.common.mountDevVolume }}
+            - name: provisioner-dev
+              mountPath: /dev
+            {{- end }}
+            {{- range $classConfig := .Values.provisioner.classes }}
+            - name: {{ $classConfig.name }}
+              mountPath: {{ $classConfig.mountDir | default $classConfig.hostDir }}
+              mountPropagation: HostToContainer
+            {{- end }}
+          env:
+            - name: BLOCK_DEVICES
+              value: {{ join " " .Values.provisioner.common.blockDeviceNames | quote }}
+            - name: STARTUP_SCRIPT
+              value: |
+                #!/usr/bin/env bash
+                set -euo pipefail
+                set -x
+                
+                blockDevices=${BLOCK_DEVICES}
+                
+                for dev in $blockDevices; do
+                  cleanName=$(echo ${dev} | sed 's/\//-/g')
+                  existing=$(find /mnt/disks/ -maxdepth 1 -type l -name "*${cleanName}" | wc -l)
+                  if [[ $existing -ge "1" ]]; then
+                    echo "${dev} already cleaned"
+                  else
+                    sed -i "s|${dev}.*||" /etc/fstab
+                    umount ${dev} || true
+                    wipefs --all -f ${dev}
+                    dd if=/dev/zero of=${dev} bs=1M count=10 conv=fsync
+                    echo "${dev} cleaned"
+                  fi
+                done
+                
+                mkdir -p /mnt/disks
+                
+                for dev in $blockDevices; do
+                  existing=$(find /mnt/disks/ -maxdepth 1 -type l -name "*${cleanName}" | wc -l)
+                  if [[ $existing -ge "1" ]]; then
+                    echo "${dev} already linked"
+                  else
+                    ln -s ${dev} /mnt/disks/$(uuidgen)${cleanName}
+                    echo "${dev} linked"
+                  fi
+                done
+
+      containers:
+        - name: pause
+          image: gcr.io/google_containers/pause
+          resources:
+            limits:
+              cpu: 50m
+              memory: 50Mi
+            requests:
+              cpu: 50m
+              memory: 50Mi
+      volumes:
+        - name: prepare-disks-config
+          configMap:
+            name: {{ template "storage-nvme-rook-cephfs.fullname" . }}-prepare-disks-config
+        {{- if .Values.provisioner.common.mountDevVolume }}
+        - name: provisioner-dev
+          hostPath:
+            path: /dev
+        {{- end }}
+        {{- range $classConfig := .Values.provisioner.classes }}
+        - name: {{ $classConfig.name }}
+          hostPath:
+            path: {{ $classConfig.hostDir }}
+        {{- end }}
+        {{- range $name, $path := .Values.provisioner.daemonset.additionalHostPathVolumes }}
+        - name: {{ quote $name }}
+          hostPath:
+            path: {{ quote $path }}
+        {{- end }}
+ 

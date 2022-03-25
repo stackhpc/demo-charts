@@ -1,0 +1,15 @@
+apiVersion: v2
+name: storage-nvme-rook-cephfs
+description: Deploy rook cephfs on Arcus DAC nodes
+type: application
+version: 0.1.0
+appVersion: "1.8.5"
+icon: https://raw.githubusercontent.com/rook/rook/master/Documentation/media/logo.svg
+
+dependencies:
+  - name: provisioner
+    version: ">=0-0"
+    repository: file://../vendor/sig-storage-local-static-provisioner/helm/provisioner
+  - name: rook-ceph-cluster
+    version: v1.8.5
+    repository: https://charts.rook.io/release
