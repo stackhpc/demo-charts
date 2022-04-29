@@ -1,0 +1,9 @@
+apiVersion: zenith.stackhpc.com/v1alpha1
+kind: Client
+metadata:
+  name: {{ include "jupyterhub-zenith.fullname" . }}
+  labels: {{ include "jupyterhub-zenith.labels" . | nindent 4 }}
+spec:
+  reservationName: {{ include "jupyterhub-zenith.fullname" . }}
+  upstream:
+    serviceName: {{ include "jupyterhub.proxy-public.fullname" . }}

@@ -1,0 +1,17 @@
+apiVersion: zenith.stackhpc.com/v1alpha1
+kind: Reservation
+metadata:
+  name: {{ include "jupyterhub-zenith.fullname" . }}
+  labels: {{ include "jupyterhub-zenith.labels" . | nindent 4 }}
+  annotations:
+    azimuth.stackhpc.com/service-icon-url: {{ .Values.zenithClient.iconUrl }}
+    azimuth.stackhpc.com/service-label: {{
+      regexReplaceAll "[^a-z0-9]+" .Release.Name " " |
+        title |
+        printf "%s (JupyterHub)"
+    }}
+    {{- with .Values.zenithClient.description }}
+    azimuth.stackhpc.com/service-description: {{ quote . }}
+    {{- end }}
+spec:
+  credentialSecretName: {{ include "jupyterhub-zenith.fullname" . }}-credential
